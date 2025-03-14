@@ -1,5 +1,29 @@
-controllers:
-    resource:
-        path: ../src/Controller/
-        namespace: App\Controller
-    type: attribute
+api_enqueue:
+    path: /api/enqueue
+    controller: App\Controller\Api\QueueController::enqueue
+    methods: [POST]
+
+api_dequeue:
+    path: /api/dequeue
+    controller: App\Controller\Api\QueueController::dequeue
+    methods: [GET]
+
+api_peek:
+    path: /api/peek
+    controller: App\Controller\Api\QueueController::peek
+    methods: [GET]
+
+api_rear:
+    path: /api/rear
+    controller: App\Controller\Api\QueueController::rear
+    methods: [GET]
+
+api_isEmpty:
+    path: /api/is-empty
+    controller: App\Controller\Api\QueueController::isEmpty
+    methods: [GET]
+
+api_size:
+    path: /api/size
+    controller: App\Controller\Api\QueueController::size
+    methods: [GET]
