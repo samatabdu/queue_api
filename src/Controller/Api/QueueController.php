@@ -2,7 +2,7 @@
 
 namespace App\Controller\Api;
 
-use App\Service\QueueService;
+use App\Service\QueueServiceInterface;
 use App\Validation\QueueValidation;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,7 +14,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 #[Route('/api', name: 'api_')]
 class QueueController extends AbstractController
 {
-    public function __construct(private readonly QueueService $queueService)
+    public function __construct(private readonly QueueServiceInterface $queueService)
     {
 
     }
@@ -33,8 +33,7 @@ class QueueController extends AbstractController
             $this->queueService->enqueue($validator->getItem());
             return $this->json(['message' => 'Item added to queue'], 201);
         } catch (\Throwable $e) {
-            return $this->json(['error' => $e->getMessage()], 500);
-//            return $this->json(['error' => 'Unexpected error'], 500);
+            return $this->json(['error' => 'Unexpected error'], 500);
         }
     }
 
